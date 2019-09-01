@@ -71,7 +71,6 @@ public class Diseas implements Serializable {
 	}
 
 	public void setName(String name) {
-		System.out.println("Qadez Set Name " + name);
 		this.name = name;
 	}
 

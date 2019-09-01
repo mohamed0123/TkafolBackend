@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by rajeevkumarsingh on 27/06/17.
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/userApi")
 public class UserController {
@@ -24,6 +25,13 @@ public class UserController {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+    
+    
+    @GetMapping("/getByRuleId/{ruleId}")
+    public List<User> getUsersByRule(@PathVariable(value = "ruleId") Long ruleId) {
+        return userRepository.getUsersByRules(ruleId);
+    }
+    
 
     @PostMapping("/create")
     public User createOrUpdateUser(@Valid @RequestBody User user) {

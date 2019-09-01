@@ -2,7 +2,6 @@ package com.tkafol.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -60,10 +58,6 @@ public class Branch implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "AREA_MANAGER_ID")
 	private User user;
-
-	// bi-directional many-to-one association to User
-	@OneToMany(mappedBy = "branch")
-	private List<User> users;
 
 	public Branch() {
 	}
@@ -122,28 +116,6 @@ public class Branch implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public List<User> getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	public User addUser(User user) {
-		getUsers().add(user);
-		user.setBranch(this);
-
-		return user;
-	}
-
-	public User removeUser(User user) {
-		getUsers().remove(user);
-		user.setBranch(null);
-
-		return user;
 	}
 
 }

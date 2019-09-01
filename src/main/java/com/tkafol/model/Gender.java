@@ -2,7 +2,6 @@ package com.tkafol.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,10 +47,6 @@ public class Gender implements Serializable {
 	@LastModifiedDate
 	private Date lastModifiedDate;
 
-	// bi-directional many-to-one association to User
-	@OneToMany(mappedBy = "gender")
-	private List<User> users;
-
 	public Gender() {
 	}
 
@@ -86,28 +80,6 @@ public class Gender implements Serializable {
 
 	public void setStoreDate(Date storeDate) {
 		this.storeDate = storeDate;
-	}
-
-	public List<User> getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	public User addUser(User user) {
-		getUsers().add(user);
-		user.setGender(this);
-
-		return user;
-	}
-
-	public User removeUser(User user) {
-		getUsers().remove(user);
-		user.setGender(null);
-
-		return user;
 	}
 
 }

@@ -2,7 +2,6 @@ package com.tkafol.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,10 +46,6 @@ public class ResearchType implements Serializable {
 	@LastModifiedDate
 	private Date lastModifiedDate;
 
-	// bi-directional many-to-one association to Case
-	@OneToMany(mappedBy = "researchTypeBean")
-	private List<Case> cases;
-
 	public ResearchType() {
 	}
 
@@ -85,28 +79,6 @@ public class ResearchType implements Serializable {
 
 	public void setStoreDate(Date storeDate) {
 		this.storeDate = storeDate;
-	}
-
-	public List<Case> getCases() {
-		return this.cases;
-	}
-
-	public void setCases(List<Case> cases) {
-		this.cases = cases;
-	}
-
-	public Case addCas(Case cas) {
-		getCases().add(cas);
-		cas.setResearchTypeBean(this);
-
-		return cas;
-	}
-
-	public Case removeCas(Case cas) {
-		getCases().remove(cas);
-		cas.setResearchTypeBean(null);
-
-		return cas;
 	}
 
 }

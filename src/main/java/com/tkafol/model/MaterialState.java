@@ -2,7 +2,6 @@ package com.tkafol.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +9,6 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * 
  */
 @Entity
-@Table(name = "mayterial_state")
+@Table(name = "material_state")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
 public class MaterialState implements Serializable {
@@ -47,10 +45,6 @@ public class MaterialState implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date lastModifiedDate;
-
-	// bi-directional many-to-one association to Case
-	@OneToMany(mappedBy = "matrialState")
-	private List<Case> cases;
 
 	public MaterialState() {
 	}
@@ -85,28 +79,6 @@ public class MaterialState implements Serializable {
 
 	public void setStoreDate(Date storeDate) {
 		this.storeDate = storeDate;
-	}
-
-	public List<Case> getCases() {
-		return this.cases;
-	}
-
-	public void setCases(List<Case> cases) {
-		this.cases = cases;
-	}
-
-	public Case addCas(Case cas) {
-		getCases().add(cas);
-		cas.setMatrialState(this);
-
-		return cas;
-	}
-
-	public Case removeCas(Case cas) {
-		getCases().remove(cas);
-		cas.setMatrialState(null);
-
-		return cas;
 	}
 
 }
