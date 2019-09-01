@@ -1,7 +1,6 @@
 package com.tkafol.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -43,16 +42,16 @@ public class Case implements Serializable {
 	private String caseName;
 
 	@Column(name = "FILE_NUMBER")
-	private int fileNumber;
+	private Long fileNumber;
 
 	@Column(name = "ID_ISSUED_DATE")
-	private Timestamp idIssuedDate;
+	private Date idIssuedDate;
 
 	@Column(name = "ID_NUMBER")
 	private String idNumber;
 
 	@Column(name = "RESEARCH_DATE")
-	private Timestamp researchDate;
+	private Date researchDate;
 
 	@Column(name = "STORE_DATE", nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -83,7 +82,7 @@ public class Case implements Serializable {
 	// bi-directional many-to-one association to ResearchType
 	@ManyToOne
 	@JoinColumn(name = "RESEARCH_TYPE")
-	private ResearchType researchTypeBean;
+	private ResearchType researchType;
 
 	public Date getLastModifiedDate() {
 		return lastModifiedDate;
@@ -120,19 +119,19 @@ public class Case implements Serializable {
 		this.caseName = caseName;
 	}
 
-	public int getFileNumber() {
+	public Long getFileNumber() {
 		return this.fileNumber;
 	}
 
-	public void setFileNumber(int fileNumber) {
+	public void setFileNumber(Long fileNumber) {
 		this.fileNumber = fileNumber;
 	}
 
-	public Timestamp getIdIssuedDate() {
+	public Date getIdIssuedDate() {
 		return this.idIssuedDate;
 	}
 
-	public void setIdIssuedDate(Timestamp idIssuedDate) {
+	public void setIdIssuedDate(Date idIssuedDate) {
 		this.idIssuedDate = idIssuedDate;
 	}
 
@@ -144,11 +143,11 @@ public class Case implements Serializable {
 		this.idNumber = idNumber;
 	}
 
-	public Timestamp getResearchDate() {
+	public Date getResearchDate() {
 		return this.researchDate;
 	}
 
-	public void setResearchDate(Timestamp researchDate) {
+	public void setResearchDate(Date researchDate) {
 		this.researchDate = researchDate;
 	}
 
@@ -192,12 +191,12 @@ public class Case implements Serializable {
 		this.matrialState = matrialState;
 	}
 
-	public ResearchType getResearchTypeBean() {
-		return this.researchTypeBean;
+	public ResearchType getResearchType() {
+		return researchType;
 	}
 
-	public void setResearchTypeBean(ResearchType researchTypeBean) {
-		this.researchTypeBean = researchTypeBean;
+	public void setResearchType(ResearchType researchType) {
+		this.researchType = researchType;
 	}
 
 }
